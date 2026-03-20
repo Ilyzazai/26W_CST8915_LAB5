@@ -20,9 +20,9 @@ This repository contains the final Docker Compose configuration for running the 
 ## Source Repositories
 These are the clone application repositories used to build and push the Docker images:
 
-- **Order Service:** _Add your GitHub repo link here_
-- **Product Service:** _Add your GitHub repo link here_
-- **Store Front:** _Add your GitHub repo link here_
+- **Order Service:** https://github.com/Ilyzazai/26W_CST8915_LAB5/tree/main/order-service-L4
+- **Product Service:** https://github.com/Ilyzazai/26W_CST8915_LAB5/tree/main/product-service-python-L4
+- **Store Front:** https://github.com/Ilyzazai/26W_CST8915_LAB5/tree/main/store-front-L4
 
 ---
 

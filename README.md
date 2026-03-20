@@ -104,11 +104,10 @@ services:
 - Container networking allows services to communicate by service name instead of hard-coded IP addresses.
 - RabbitMQ can be accessed by the `order-service` using the internal Docker network.
 
-> Note: For a Vue frontend served by Nginx, service URLs are often baked into the frontend image during the build stage. If the frontend does not call the backend correctly, the `store-front` image may need to be rebuilt with the correct API URLs before pushing it to Docker Hub.
 
 ---
 
-## Optional Reflection
+## Reflection
 This lab helped me understand how microservices can be packaged into containers and managed together in one environment. I learned how to use Dockerfiles for different technologies, how to orchestrate services with Docker Compose, and how to store images in Docker Hub for reuse. This lab also showed how containers support cloud-ready and portable application deployment.
 
 ---

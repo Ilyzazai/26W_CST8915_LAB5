@@ -1,6 +1,3 @@
-# content would be added until monday 11pm 
-
-
 # CST8915 – Lab 5 Submission (Full-stack Cloud-native Development)
 
 ## Student
@@ -11,24 +8,17 @@
 ---
 
 ## Demo Video
-- **YouTube Link:** _Add your video link here later_
-
-<!-- Leave this section for your future demo video -->
-
+- **YouTube Link:** https://www.youtube.com/watch?v=MfM2ftv0H-0
 
 ---
 
 ## Submission Repository
 This repository contains the final Docker Compose configuration for running the Algonquin Pet Store application with Docker Hub images.
 
-### Files Included
-- `README.md`
-- `docker-compose.yaml`
-
 ---
 
 ## Source Repositories
-These are the forked application repositories used to build and push the Docker images:
+These are the clone application repositories used to build and push the Docker images:
 
 - **Order Service:** _Add your GitHub repo link here_
 - **Product Service:** _Add your GitHub repo link here_
@@ -37,11 +27,9 @@ These are the forked application repositories used to build and push the Docker 
 ---
 
 ## Docker Hub Images
-Replace the placeholders below with your real Docker Hub image links if you want:
-
-- `YOUR_DOCKERHUB_USERNAME/order-service:latest`
-- `YOUR_DOCKERHUB_USERNAME/product-service:latest`
-- `YOUR_DOCKERHUB_USERNAME/store-front:latest`
+- ilyaszazai/order-service:latest
+- ilyaszazai/product-service:latest
+- ilyaszazai/store-front:latest
 
 ---
 
@@ -72,8 +60,6 @@ Docker Compose creates a shared network automatically, so the containers can com
 ## Final `docker-compose.yaml`
 
 ```yaml
-version: '3'
-
 services:
   rabbitmq:
     image: rabbitmq:3-management
@@ -81,64 +67,34 @@ services:
       - "5672:5672"
       - "15672:15672"
     environment:
-      - RABBITMQ_DEFAULT_USER=myuser
-      - RABBITMQ_DEFAULT_PASS=mypassword
+      RABBITMQ_DEFAULT_USER: myuser
+      RABBITMQ_DEFAULT_PASS: mypassword
 
   order-service:
-    image: YOUR_DOCKERHUB_USERNAME/order-service:latest
+    image: ilyaszazai/order-service:latest
     ports:
       - "3000:3000"
     environment:
-      - RABBITMQ_CONNECTION_STRING=amqp://myuser:mypassword@rabbitmq:5672/
-      - PORT=3000
+      PORT: 3000
+      RABBITMQ_CONNECTION_STRING: amqp://myuser:mypassword@rabbitmq:5672/
     depends_on:
       - rabbitmq
 
   product-service:
-    image: YOUR_DOCKERHUB_USERNAME/product-service:latest
+    image: ilyaszazai/product-service:latest
     ports:
       - "3030:3030"
     environment:
-      - PORT=3030
+      PORT: 3030
 
   store-front:
-    image: YOUR_DOCKERHUB_USERNAME/store-front:latest
+    image: ilyaszazai/store-front:latest
     ports:
-      - "80:80"
-    environment:
-      - VUE_APP_ORDER_SERVICE_URL=http://order-service:3000
-      - VUE_APP_PRODUCT_SERVICE_URL=http://product-service:3030
+       - "8080:80"
     depends_on:
       - order-service
       - product-service
 ```
-
----
-
-## How to Run the Application
-Run the following command in the repository root:
-
-```bash
-docker compose up -d
-```
-
-To rebuild after updating images:
-
-```bash
-docker compose pull
-docker compose up -d
-```
-
-Open these URLs after the containers start:
-
-- **Store Front:** `http://localhost`
-- **RabbitMQ Management UI:** `http://localhost:15672`
-
-RabbitMQ default login from this file:
-
-- **Username:** `myuser`
-- **Password:** `mypassword`
-
 ---
 
 ## Notes / Lessons Learned
